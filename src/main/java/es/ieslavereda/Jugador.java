@@ -21,7 +21,8 @@ public class Jugador {
         for(Carta carta:mano){
             puntos = puntos + carta.getNumero().getPuntuacion()[0];
         }
-        return puntos;
+        return (puntos>21?-1:puntos);
+        //if(puntos>21) return -1 else return puntos
     }
 
     public void addCarta(Carta carta){
