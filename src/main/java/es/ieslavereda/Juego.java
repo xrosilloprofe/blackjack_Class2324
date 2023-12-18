@@ -21,6 +21,7 @@ public class Juego {
         for(Jugador jugador:jugadores){
             repartoInicial(jugador);
         }
+        repartoInicial(jugadorPC);
 
         //jugará cada jugador
         for(Jugador jugador:jugadores)
@@ -53,14 +54,49 @@ public class Juego {
     }
 
     private int maxPuntuacionJugadores(){
-        return 0;
+        int maxPuntuacion = Integer.MIN_VALUE;
+        for(Jugador jugador:jugadores){
+            if(jugador.getPuntuacion()>maxPuntuacion)
+                maxPuntuacion=jugador.getPuntuacion();
+        }
+        return maxPuntuacion;
     }
 
     public void juegaPC(Jugador jugador){
+        System.out.println(colorize("Le toca al jugador " + jugadorPC.getNombre(), Attribute.GREEN_TEXT()));
+        System.out.println(jugadorPC);
+        int maxPuntuacion = maxPuntuacionJugadores();
+
+        while(jugadorPC.getPuntuacion()>=0 && jugadorPC.getPuntuacion()<maxPuntuacion){
+            jugadorPC.addCarta(baraja.repartirEncima());
+            System.out.println(jugadorPC);
+            if(jugadorPC.getPuntuacion()<0)
+                System.out.println(colorize("Se ha pasado la BANCA",Attribute.MAGENTA_TEXT()));
+        }
 
     }
 
     public void mostrarGanador(){
+        int maxPuntuacion = maxPuntuacionJugadores();
+        if(maxPuntuacion<=jugadorPC.getPuntuacion())
+            System.out.println("GANA LA BANCA PRINGAOS !!");
+        else{
+            int numGanadores=0;
+            String[] ganadores = new String[jugadores.length];
+            for(Jugador jugador:jugadores){
+                if(jugador.getPuntuacion()==maxPuntuacion){
+                    ganadores[numGanadores++] = jugador.getNombre();
+                }
+            }
+
+            for(String ganador:ganadores){
+                if(ganador!=null)
+                    System.out.println("GANADOR: " + ganador);
+            }
+
+        }
+
+
 
     }
 
