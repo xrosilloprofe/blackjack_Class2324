@@ -68,10 +68,20 @@ public class Juego {
         int maxPuntuacion = maxPuntuacionJugadores();
 
         while(jugadorPC.getPuntuacion()>=0 && jugadorPC.getPuntuacion()<maxPuntuacion){
+            esperar(2000);
             jugadorPC.addCarta(baraja.repartirEncima());
             System.out.println(jugadorPC);
             if(jugadorPC.getPuntuacion()<0)
                 System.out.println(colorize("Se ha pasado la BANCA",Attribute.MAGENTA_TEXT()));
+        }
+
+    }
+
+    private void esperar(int tiempoMili){
+        try{
+            Thread.sleep(tiempoMili);
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
     }
@@ -88,7 +98,6 @@ public class Juego {
                     ganadores[numGanadores++] = jugador.getNombre();
                 }
             }
-
             for(String ganador:ganadores){
                 if(ganador!=null)
                     System.out.println("GANADOR: " + ganador);
