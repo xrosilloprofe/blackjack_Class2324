@@ -2,9 +2,13 @@ package es.ieslavereda;
 
 public class Main {
     public static void main(String[] args) {
-        Baraja b1 = new Baraja();
-        System.out.println(b1);
+        //pedir numero jugadores entre 1 y 5
 
+        //crear un array de n jugadores
+
+        //crear un juego
+
+        //iniciar el juego
 
     }
 }
